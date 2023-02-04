@@ -76,9 +76,9 @@ const HistoryFileName& History::unpackFileName(const QString& fileNamePacked)
     int nPathIndex = fileNamePacked.lastIndexOf("/");
     QStringList unpackedFileName;
     if (nPathIndex == -1) {
-        unpackedFileName = fileNamePacked.split("-");
+        unpackedFileName = fileNamePacked.split("|");
     } else {
-        unpackedFileName = fileNamePacked.mid(nPathIndex + 1).split("-");
+        unpackedFileName = fileNamePacked.mid(nPathIndex + 1).split("|");
     }
 
     switch (unpackedFileName.length()) {
@@ -109,9 +109,9 @@ const QString& History::packFileName(const QString& storageType,
     if (storageType.length() > 0) {
         if (deleteToken.length() > 0) {
             m_packedFileName =
-              storageType + "-" + deleteToken + "-" + m_packedFileName;
+              storageType + "|" + deleteToken + "|" + m_packedFileName;
         } else {
-            m_packedFileName = storageType + "-" + m_packedFileName;
+            m_packedFileName = storageType + "|" + m_packedFileName;
         }
     }
     return m_packedFileName;
